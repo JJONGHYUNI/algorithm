@@ -1,3 +1,4 @@
+#10799
 import sys
 razor=input()
 answer=0

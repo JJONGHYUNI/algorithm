@@ -1,3 +1,4 @@
+#10828
 import sys
 n=int(input())
 stack=[]

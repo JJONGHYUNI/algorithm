@@ -1,3 +1,4 @@
+#2953
 score=[list(map(int,input().split())) for _ in range(5)]
 winscore=[0,0,0,0,0]
 for i in range(5):
