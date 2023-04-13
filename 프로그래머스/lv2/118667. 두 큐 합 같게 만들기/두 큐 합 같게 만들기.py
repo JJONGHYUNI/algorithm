@@ -2,11 +2,13 @@ from collections import deque
 def solution(queue1, queue2):
     answer = 0
     q1,q2=deque(queue1),deque(queue2)
+    maxCycle=len(q1)+len(q2)+len(q1)
     sum1,sum2=sum(q1),sum(q2)
+    if (sum1+sum2)%2!=0:
+        return -1
     while True:
-        if answer==300000:
-            answer=-1
-            break
+        if answer>maxCycle:
+            return -1
         if sum1==sum2:
             break
         elif sum1>sum2:
