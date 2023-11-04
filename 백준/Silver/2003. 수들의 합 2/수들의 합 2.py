@@ -1,21 +1,22 @@
-import sys
-input = sys.stdin.readline
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
 
-n,m = map(int,input().split())
-answer = 0
-board = list(map(int,input().split()))
-for i in range(n):
-    tmp = board[i]
-    if tmp == m :
-        answer +=1
-        continue
-    elif tmp > m :
-        continue
-    for j in range(i+1, n):
-        tmp += board[j]
-        if(tmp == m) :
-            answer += 1
-            break
-        elif(tmp > m):
-            break
-print(answer)
+left, right = 0, 1
+cnt = 0
+while right<=N and left<=right:
+
+    sum_nums = nums[left:right]
+    total = sum(sum_nums)
+
+    if total == M:
+        cnt += 1
+
+        right += 1
+
+    elif total < M:
+        right += 1
+
+    else:
+        left += 1
+
+print(cnt)
