@@ -9,7 +9,6 @@ def solution(skill, skill_trees):
                 temp.append(cur)
         for i in range(len(temp)):
             if temp[i] != sk[i]:
-                print(temp)
                 answer -= 1
                 break
             
