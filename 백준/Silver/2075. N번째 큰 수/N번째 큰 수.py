@@ -1,5 +1,5 @@
 #start 18:54
-#end   19:15
+#end   19:20
 
 import sys
 import heapq
@@ -12,11 +12,10 @@ for _ in range(n):
     a = list(map(int, input().split()))
     for i in a:
         if len(heap) == n:
-            tmp = heapq.heappop(heap)
-            if tmp < i:
+            if heap[0] < i:
+                heapq.heappop(heap)
                 heapq.heappush(heap, i)
                 continue
-            heapq.heappush(heap, tmp)
             continue
         heapq.heappush(heap, i)
 
