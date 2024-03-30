@@ -7,7 +7,6 @@ input = sys.stdin.readline
 
 m, n, k = map(int, input().split())
 board = [[0] * n for _ in range(m)]
-visited = [[0] * n for _ in range(m)]
 
 for _ in range(k):
     x, y, dx, dy = map(int, input().split())
@@ -22,21 +21,18 @@ def dfs(y, x):
         dy = y + d[i]
         dx = x + d[3-i]
         if 0 <= dy < m and 0 <= dx < n:
-            if not visited[dy][dx] and not board[dy][dx]:
-                visited[dy][dx] = 1
+            if not board[dy][dx]:
                 board[dy][dx] = 1
                 dfs(dy, dx)
                 
 answer = []
 for i in range(m):
     for j in range(n):
-        if not board[i][j] and not visited[i][j]:
+        if not board[i][j]:
             board[i][j] = 1
-            visited[i][j] = 1
             cnt = 0
             dfs(i, j)
             answer.append(cnt)
 print(len(answer))
 answer.sort()
 print(" ".join(map(str, answer)))
-            
