@@ -1,5 +1,5 @@
 #start 18:43
-#end   19:09
+#end   19:27
 
 import sys
 from collections import deque
@@ -8,13 +8,10 @@ input = sys.stdin.readline
 
 n, m, k = map(int, input().split())
 
-board = [[0] * m for _ in range(n)]
+dp = [[1] * m for _ in range(n)]
 cnt = 0
 ky, kx = 0, 0
-q = deque()
-c = 1
 if k != 0:
-    c = 0
     for i in range(n):
         for j in range(m):
            cnt += 1
@@ -23,22 +20,15 @@ if k != 0:
                break
         if ky:
             break
-q.append((0, 0, c))
-d = [0, 1]
-answer = 0
-while q:
-    y, x, tmp = q.popleft()
-    if y == n - 1 and x == m - 1 and tmp == 1:
-        answer += 1
-        continue
-    if k != 0 and not tmp and (y > ky or x > kx):
-        continue
-    for i in range(2):
-        dy = y + d[i]
-        dx = x + d[1-i]
-        if dy < n and dx < m:
-            if (dy == ky and dx == kx):
-                q.append((dy,dx,tmp+1))
-            q.append((dy,dx,tmp))
-
-print(answer)
+    for i in range(ky):
+        for j in range(kx + 1, m):
+            dp[i][j] = 0
+    for i in range(kx):
+        for j in range(ky + 1, n):
+            dp[j][i] = 0
+for i in range(1, n):
+    for j in range(1, m):
+        if not dp[i][j]:
+            continue
+        dp[i][j] = dp[i-1][j] + dp[i][j-1]
+print(dp[n-1][m-1])
