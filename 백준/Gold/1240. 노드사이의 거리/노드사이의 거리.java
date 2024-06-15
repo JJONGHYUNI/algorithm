@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 public class Main {
 
     static int n, m;
-    static int[][] nodes;
+    static List<Node>[] nodes;
     static boolean[] visited;
 
     public static void main(String[] args) throws IOException {
@@ -15,7 +15,12 @@ public class Main {
 
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        nodes = new int[n + 1][n + 1];
+        nodes = new ArrayList[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            nodes[i] = new ArrayList<>();
+        }
+        
         int a, b, c;
 
         for (int i = 0; i < n - 1; i++) {
@@ -24,10 +29,12 @@ public class Main {
             b = Integer.parseInt(st.nextToken());
             c = Integer.parseInt(st.nextToken());
 
-            nodes[a][b] = c;
-            nodes[b][a] = c;
+            nodes[a].add(new Node(b, c));
+            nodes[b].add(new Node(a, c));
         }
+
         StringBuilder sb = new StringBuilder();
+
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             a = Integer.parseInt(st.nextToken());
@@ -38,24 +45,23 @@ public class Main {
     }
 
     private static int bfs(int start, int target) {
-        Queue<Node> q = new LinkedList<>();
+        Queue<Node> q = new ArrayDeque<>();
         visited = new boolean[n + 1];
         q.add(new Node(start, 0));
         Node node;
+
         while (!q.isEmpty()) {
             node = q.poll();
             if (node.next == target) {
                 return node.cost;
             }
-            for (int i = 1; i <= n; i++) {
-                if (nodes[node.next][i] == 0) {
+
+            for (Node next : nodes[node.next]) {
+                if (visited[next.next]) {
                     continue;
                 }
-                if (visited[i]) {
-                    continue;
-                }
-                visited[i] = true;
-                q.add(new Node(i, node.cost + nodes[node.next][i]));
+                visited[next.next] = true;
+                q.add(new Node(next.next, next.cost + node.cost));
             }
         }
         return 0;
