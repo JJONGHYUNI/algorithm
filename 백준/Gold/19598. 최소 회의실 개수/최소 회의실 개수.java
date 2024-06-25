@@ -23,33 +23,28 @@ public class Main {
         n = Integer.parseInt(br.readLine());
 
         PriorityQueue<Meeting> meetings = new PriorityQueue<>();
-        List<Integer> endTimes = new ArrayList<>();
+        PriorityQueue<Integer> rooms = new PriorityQueue<>();
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             meetings.add(new Meeting(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
         }
-        int answer = 0;
-        Meeting meeting = meetings.poll();
-        endTimes.add(meeting.end);
-        while (!meetings.isEmpty()) {
-            meeting = meetings.poll();
-            boolean control = false;
-            for (int i = 0; i < endTimes.size(); i++) {
-                if (meeting.start >= endTimes.get(i)) {
-                    endTimes.set(i, meeting.end);
-                    control = true;
-                    break;
-                }
-            }
 
-            if (control) {
+        int answer = 0;
+
+        while (!meetings.isEmpty()) {
+            Meeting meeting = meetings.poll();
+
+            if (rooms.isEmpty() || meeting.start < rooms.peek()) {
+                answer++;
+                rooms.add(meeting.end);
                 continue;
             }
 
-            endTimes.add(meeting.end);
+            rooms.poll();
+            rooms.add(meeting.end);
         }
 
-        System.out.print(endTimes.size());
+        System.out.print(answer);
     }
 }
