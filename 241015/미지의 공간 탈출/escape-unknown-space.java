@@ -183,7 +183,7 @@ public class Main {
 
         for (Abnormal abnormal : abnormals) {
             int dt = t / abnormal.v;
-            map[abnormal.y][abnormal.x] = -1;
+            map[abnormal.y][abnormal.x] = -2;
             int dy = abnormal.y;
             int dx = abnormal.x;
 
@@ -203,7 +203,7 @@ public class Main {
                     if (map[dy][dx] == 3 || map[dy][dx] == 1 || map[dy][dx] == 4) {
                         break;
                     }
-                    map[dy][dx] = -1;
+                    map[dy][dx] = -2;
                 }
             }
         }
@@ -227,8 +227,8 @@ public class Main {
                 continue;
             }
 
-            if (dx < 0 && timeSpace[1][0][dy] == 0) {
-                moves.add(new Pos(0, dy, 1, pos.t + 1));
+            if (dx < 0 && timeSpace[1][0][m - 1 - dy] == 0) {
+                moves.add(new Pos(0, m - 1 - dy, 1, pos.t + 1));
                 continue;
             }
 
