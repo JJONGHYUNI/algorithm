@@ -78,7 +78,6 @@ public class Main {
             return;
         }
         moveAbnormal(exitTimeSpaceP.t);
-
         if (map[exitTimeSpaceP.y][exitTimeSpaceP.x] != 0) {
             System.out.print(-1);
             return;
@@ -326,7 +325,7 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty + dx, tx - 1) && map[ty + (m - 1 - dx)][tx - 1] == 0) {
+            if (dy >= m && isValidRange(ty + dx, tx - 1) && map[ty + dx][tx - 1] == 0) {
                 moves.add(new Pos(ty + dx, tx - 1, 5, pos.t + 1));
                 continue;
             }
