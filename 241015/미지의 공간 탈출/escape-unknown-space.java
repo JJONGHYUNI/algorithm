@@ -91,7 +91,7 @@ public class Main {
 
         while (!q.isEmpty()) {
             Pos p = q.poll();
-
+            
             if (p.y == ey && p.x == ex) {
                 System.out.print(p.t);
                 return;
@@ -292,8 +292,8 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty - 1, tx + dx) && map[ty - 1][tx + dx] == 0) {
-                moves.add(new Pos(ty - 1, tx + dx, 5, pos.t + 1));
+            if (dy >= m && isValidRange(ty - 1, tx + (m - 1 - dx)) && map[ty - 1][tx + (m - 1 - dx)] == 0) {
+                moves.add(new Pos(ty - 1, tx + (m - 1 - dx), 5, pos.t + 1));
                 continue;
             }
 
@@ -327,8 +327,8 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty + dx, tx - 1) && map[ty + dx][tx - 1] == 0) {
-                moves.add(new Pos(ty + dx, tx - 1, 5, pos.t + 1));
+            if (dy >= m && isValidRange(ty + (m - 1 - dx), tx - 1) && map[ty + (m - 1 - dx)][tx - 1] == 0) {
+                moves.add(new Pos(ty + (m - 1 - dx), tx - 1, 5, pos.t + 1));
                 continue;
             }
 
