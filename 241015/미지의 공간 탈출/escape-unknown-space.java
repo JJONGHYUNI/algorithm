@@ -53,7 +53,7 @@ public class Main {
 
         while (!q.isEmpty()) {
             Pos p = q.poll();
-            
+
             if (p.d == 5) {
                 exitTimeSpaceP = p;
                 break;
@@ -291,8 +291,8 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty - 1, tx + (m - 1 - dx)) && (map[ty - 1][tx + (m - 1 - dx)] == 0 || map[ty - 1][tx + (m - 1 - dx)] == 4)) {
-                moves.add(new Pos(ty - 1, tx + (m - 1 - dx), 5, pos.t + 1));
+            if (dy >= m && isValidRange(ty - 1, tx + dx) && (map[ty - 1][tx + dx] == 0 || map[ty - 1][tx + dx] == 4)) {
+                moves.add(new Pos(ty - 1, tx + dx, 5, pos.t + 1));
                 continue;
             }
 
