@@ -53,7 +53,7 @@ public class Main {
 
         while (!q.isEmpty()) {
             Pos p = q.poll();
-
+            
             if (p.d == 5) {
                 exitTimeSpaceP = p;
                 break;
@@ -356,8 +356,8 @@ public class Main {
             int dy = pos.y + d[i];
             int dx = pos.x - d[3 - i];
 
-            if (dy < 0 && timeSpace[4][dx][m - 1] == 0) {
-                moves.add(new Pos(dx, m - 1, 4, pos.t + 1));
+            if (dy < 0 && timeSpace[4][m - 1 - dx][m - 1] == 0) {
+                moves.add(new Pos(m - 1 - dx, m - 1, 4, pos.t + 1));
                 continue;
             }
 
