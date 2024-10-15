@@ -326,8 +326,8 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty + (m - 1 - dx), tx - 1) && map[ty + (m - 1 - dx)][tx - 1] == 0) {
-                moves.add(new Pos(ty + (m - 1 - dx), tx - 1, 5, pos.t + 1));
+            if (dy >= m && isValidRange(ty + dx, tx - 1) && map[ty + (m - 1 - dx)][tx - 1] == 0) {
+                moves.add(new Pos(ty + dx, tx - 1, 5, pos.t + 1));
                 continue;
             }
 
