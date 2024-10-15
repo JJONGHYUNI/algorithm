@@ -217,8 +217,8 @@ public class Main {
         for (int i = 0; i < 4; i++) {
             int dy = pos.y + d[i];
             int dx = pos.x - d[3 - i];
-            if (dy < 0 && timeSpace[3][0][m - 1 - dx] == 0) {
-                moves.add(new Pos(0, m - 1 - dx, 3, pos.t + 1));
+            if (dy < 0 && timeSpace[3][0][dx] == 0) {
+                moves.add(new Pos(0, dx, 3, pos.t + 1));
                 continue;
             }
 
@@ -227,8 +227,8 @@ public class Main {
                 continue;
             }
 
-            if (dx < 0 && timeSpace[1][0][m - 1 - dy] == 0) {
-                moves.add(new Pos(0, m - 1 - dy, 1, pos.t + 1));
+            if (dx < 0 && timeSpace[1][0][dy] == 0) {
+                moves.add(new Pos(0, dy, 1, pos.t + 1));
                 continue;
             }
 
@@ -262,8 +262,8 @@ public class Main {
                 continue;
             }
 
-            if (dx < 0 && timeSpace[1][dy][0] == 0) {
-                moves.add(new Pos(dy, 0, 1, pos.t + 1));
+            if (dx < 0 && timeSpace[1][dy][m - 1] == 0) {
+                moves.add(new Pos(dy, m - 1, 1, pos.t + 1));
                 continue;
             }
 
@@ -287,23 +287,23 @@ public class Main {
             int dy = pos.y + d[i];
             int dx = pos.x - d[3 - i];
 
-            if (dy < 0 && timeSpace[4][0][m - 1 - dx] == 0) {
-                moves.add(new Pos(0, m - 1 - dx, 4, pos.t + 1));
+            if (dy < 0 && timeSpace[4][0][dx] == 0) {
+                moves.add(new Pos(0, dx, 4, pos.t + 1));
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty - 1, tx + (m - 1 - dx)) && map[ty - 1][tx + (m - 1 - dx)] == 0) {
-                moves.add(new Pos(ty - 1, tx + (m - 1 - dx), 5, pos.t + 1));
+            if (dy >= m && isValidRange(ty - 1, tx + dx) && map[ty - 1][tx + dx] == 0) {
+                moves.add(new Pos(ty - 1, tx + dx, 5, pos.t + 1));
                 continue;
             }
 
-            if (dx < 0 && timeSpace[1][dy][m - 1] == 0) {
-                moves.add(new Pos(dy, m - 1, 1, pos.t + 1));
-                continue;
-            }
-
-            if (dx >= m && timeSpace[1][dy][0] == 0) {
+            if (dx < 0 && timeSpace[1][dy][0] == 0) {
                 moves.add(new Pos(dy, 0, 1, pos.t + 1));
+                continue;
+            }
+
+            if (dx >= m && timeSpace[0][dy][m - 1] == 0) {
+                moves.add(new Pos(dy, m - 1, 1, pos.t + 1));
                 continue;
             }
 
@@ -327,13 +327,13 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty + (m - 1 - dx), tx - 1) && map[ty + (m - 1 - dx)][tx - 1] == 0) {
-                moves.add(new Pos(ty + (m - 1 - dx), tx - 1, 5, pos.t + 1));
+            if (dy >= m && isValidRange(ty + dx, tx - 1) && map[ty + dx][tx - 1] == 0) {
+                moves.add(new Pos(ty + dx, tx - 1, 5, pos.t + 1));
                 continue;
             }
 
-            if (dx < 0 && timeSpace[3][dy][m - 1] == 0) {
-                moves.add(new Pos(dy, m - 1, 3, pos.t + 1));
+            if (dx < 0 && timeSpace[3][dy][0] == 0) {
+                moves.add(new Pos(dy, 0, 3, pos.t + 1));
                 continue;
             }
 
