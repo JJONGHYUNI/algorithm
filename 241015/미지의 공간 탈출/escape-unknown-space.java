@@ -53,6 +53,7 @@ public class Main {
 
         while (!q.isEmpty()) {
             Pos p = q.poll();
+
             if (p.d == 5) {
                 exitTimeSpaceP = p;
                 break;
@@ -78,7 +79,7 @@ public class Main {
             return;
         }
         moveAbnormal(exitTimeSpaceP.t);
-        if (map[exitTimeSpaceP.y][exitTimeSpaceP.x] != 0) {
+        if (map[exitTimeSpaceP.y][exitTimeSpaceP.x] != 0 && map[exitTimeSpaceP.y][exitTimeSpaceP.x] != 4) {
             System.out.print(-1);
             return;
         }
@@ -235,7 +236,7 @@ public class Main {
                 continue;
             }
 
-            if (isValidTimeRange(dy, dx) && timeSpace[pos.d][dy][dx] == 0) {
+            if (isValidTimeRange(dy, dx) && (timeSpace[pos.d][dy][dx] == 0 || timeSpace[pos.d][dy][dx] == 4)) {
                 moves.add(new Pos(dy, dx, pos.d, pos.t + 1));
             }
         }
@@ -255,7 +256,7 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty + m, tx + dx) && map[ty + m][tx + dx] == 0) {
+            if (dy >= m && isValidRange(ty + m, tx + dx) && (map[ty + m][tx + dx] == 0 || map[ty + m][tx + dx] == 4)) {
                 moves.add(new Pos(ty + m, tx + dx, 5, pos.t + 1));
                 continue;
             }
@@ -290,7 +291,7 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty - 1, tx + (m - 1 - dx)) && map[ty - 1][tx + (m - 1 - dx)] == 0) {
+            if (dy >= m && isValidRange(ty - 1, tx + (m - 1 - dx)) && (map[ty - 1][tx + (m - 1 - dx)] == 0 || map[ty - 1][tx + (m - 1 - dx)] == 4)) {
                 moves.add(new Pos(ty - 1, tx + (m - 1 - dx), 5, pos.t + 1));
                 continue;
             }
@@ -325,7 +326,7 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty + dx, tx - 1) && map[ty + dx][tx - 1] == 0) {
+            if (dy >= m && isValidRange(ty + dx, tx - 1) && (map[ty + dx][tx - 1] == 0 || map[ty + dx][tx - 1] == 4)) {
                 moves.add(new Pos(ty + dx, tx - 1, 5, pos.t + 1));
                 continue;
             }
@@ -360,7 +361,7 @@ public class Main {
                 continue;
             }
 
-            if (dy >= m && isValidRange(ty + (m - dx - 1), tx + m) && map[ty + (m - dx - 1)][tx + m] == 0) {
+            if (dy >= m && isValidRange(ty + (m - dx - 1), tx + m) && (map[ty + (m - dx - 1)][tx + m] == 0 || map[ty + (m - dx - 1)][tx + m] == 4)) {
                 moves.add(new Pos(ty + (m - dx - 1), tx + m, 5, pos.t + 1));
                 continue;
             }
