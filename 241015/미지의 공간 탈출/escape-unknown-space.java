@@ -53,7 +53,6 @@ public class Main {
 
         while (!q.isEmpty()) {
             Pos p = q.poll();
-
             if (p.d == 5) {
                 exitTimeSpaceP = p;
                 break;
@@ -91,7 +90,7 @@ public class Main {
 
         while (!q.isEmpty()) {
             Pos p = q.poll();
-            
+
             if (p.y == ey && p.x == ex) {
                 System.out.print(p.t);
                 return;
@@ -146,7 +145,7 @@ public class Main {
         }
 
         for (int i = 0; i < 5; i++) {
-            if (i == 1 || i == 3) {
+            if (i == 3) {
                 for (int j = 0; j < m; j++) {
                     st = new StringTokenizer(br.readLine());
                     for (int k = 0; k < m; k++) {
