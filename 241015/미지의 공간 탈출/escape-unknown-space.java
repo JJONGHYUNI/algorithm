@@ -45,7 +45,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         init();
-        
+
         Queue<Pos> q = new LinkedList<>();
 
         q.offer(start);
@@ -53,7 +53,7 @@ public class Main {
 
         while (!q.isEmpty()) {
             Pos p = q.poll();
-            
+
             if (p.d == 5) {
                 exitTimeSpaceP = p;
                 break;
@@ -227,8 +227,8 @@ public class Main {
                 continue;
             }
 
-            if (dx < 0 && timeSpace[1][0][m - 1 - dy] == 0) {
-                moves.add(new Pos(0, m - 1 - dy, 1, pos.t + 1));
+            if (dx < 0 && timeSpace[1][0][dy] == 0) {
+                moves.add(new Pos(0, dy, 1, pos.t + 1));
                 continue;
             }
 
@@ -322,8 +322,8 @@ public class Main {
             int dy = pos.y + d[i];
             int dx = pos.x - d[3 - i];
 
-            if (dy < 0 && timeSpace[4][m - 1 - dx][0] == 0) {
-                moves.add(new Pos(m - 1 - dx, 0, 4, pos.t + 1));
+            if (dy < 0 && timeSpace[4][dx][0] == 0) {
+                moves.add(new Pos(dx, 0, 4, pos.t + 1));
                 continue;
             }
 
